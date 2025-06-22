@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import RetailerSync from './RetailerSync';
 
 const Cellar: React.FC = () => {
   const [view, setView] = useState<string>('collection');
-  
+
   // Mock data for user's wine collection
   const collection = [
     { id: 1, name: '2018 Cabernet Sauvignon', producer: 'Stag\'s Leap', region: 'Napa Valley', quantity: 3, notes: 'Birthday gift, save for special occasion' },
@@ -10,24 +11,24 @@ const Cellar: React.FC = () => {
     { id: 3, name: '2020 Chardonnay', producer: 'Rombauer', region: 'Carneros', quantity: 1, notes: 'Recommended by sommelier' },
     { id: 4, name: '2017 Barolo', producer: 'Vietti', region: 'Piedmont', quantity: 2, notes: 'Aging potential: 10-15 years' },
   ];
-  
+
   // Mock data for wishlist
   const wishlist = [
     { id: 101, name: 'Opus One', producer: 'Opus One Winery', region: 'Napa Valley', notes: 'Consistently highly rated' },
     { id: 102, name: 'La Tâche', producer: 'Domaine de la Romanée-Conti', region: 'Burgundy', notes: 'Bucket list wine' },
     { id: 103, name: 'Sassicaia', producer: 'Tenuta San Guido', region: 'Tuscany', notes: 'Super Tuscan' },
   ];
-  
+
   return (
     <div>
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h4>My Wine Cellar</h4>
-          <p>Manage your wine collection and wishlist.</p>
+          <p>Manage your wine collection, wishlist, and sync with retail systems.</p>
         </div>
         <button className="btn btn-primary">Add Wine</button>
       </div>
-      
+
       <ul className="nav nav-tabs mb-4">
         <li className="nav-item">
           <button 
@@ -45,8 +46,16 @@ const Cellar: React.FC = () => {
             Wishlist
           </button>
         </li>
+        <li className="nav-item">
+          <button 
+            className={`nav-link ${view === 'retailersync' ? 'active' : ''}`}
+            onClick={() => setView('retailersync')}
+          >
+            Retailer Sync
+          </button>
+        </li>
       </ul>
-      
+
       {view === 'collection' && (
         <div className="table-responsive">
           <table className="table table-hover">
@@ -78,7 +87,7 @@ const Cellar: React.FC = () => {
           </table>
         </div>
       )}
-      
+
       {view === 'wishlist' && (
         <div className="table-responsive">
           <table className="table table-hover">
@@ -107,6 +116,10 @@ const Cellar: React.FC = () => {
             </tbody>
           </table>
         </div>
+      )}
+
+      {view === 'retailersync' && (
+        <RetailerSync />
       )}
     </div>
   );
