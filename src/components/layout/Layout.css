@@ -1,0 +1,52 @@
+.content-area {
+  width: calc(100% - 80px); /* Subtract sidebar width (60px) plus some spacing (20px) */
+  margin-left: 80px; /* Match the sidebar width (60px) plus some spacing (20px) */
+  display: block !important; /* Ensure content is displayed */
+  z-index: 1; /* Ensure content is above sidebar */
+  position: relative; /* Required for z-index to work */
+  overflow-x: visible; /* Ensure content isn't cut off */
+  padding-right: 20px; /* Add more padding to prevent content from being cut off */
+  padding-left: 20px; /* Add padding for better readability */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Responsive adjustments for content area */
+@media (max-width: 992px) {
+  .content-area {
+    width: calc(100% - 80px);
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .content-area {
+    width: calc(100% - 80px);
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .content-area {
+    width: calc(100% - 80px);
+    padding-right: 5px;
+    padding-left: 5px;
+  }
+}
+
+.row {
+  position: relative;
+  display: flex; /* Ensure row is using flexbox */
+  flex-wrap: wrap; /* Allow wrapping for responsive behavior */
+  width: 100%; /* Ensure row takes full width */
+  max-width: 100%; /* Prevent row from exceeding container width */
+}
+
+#left-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 2;
+}

@@ -1,0 +1,32 @@
+.sidenav-container {
+  width: 60px;
+  overflow: hidden;
+  padding: 0;
+  background-color: #f8f9fa;
+  border-right: 1px solid #dee2e6;
+  height: calc(100vh - 56px);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  white-space: nowrap;
+  justify-content: center;
+}
+
+.nav-item i {
+  font-size: 1.2rem;
+  min-width: 20px;
+  text-align: center;
+  margin-right: 0;
+}
+
+.nav-label {
+  display: none;
+}
+
+.nav-item.active {
+  font-weight: bold;
+  color: #0d6efd;
+}

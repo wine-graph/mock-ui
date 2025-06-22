@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
+import './Explore.css';
 
 const Explore: React.FC = () => {
   const [activeTab, setActiveTab] = useState<string>('regions');
-  
+
   const regions = ['Napa Valley', 'Bordeaux', 'Tuscany', 'Rioja', 'Barossa Valley', 'Willamette Valley'];
   const varietals = ['Cabernet Sauvignon', 'Merlot', 'Pinot Noir', 'Chardonnay', 'Sauvignon Blanc', 'Syrah'];
   const producers = ['Château Margaux', 'Opus One', 'Antinori', 'Penfolds', 'Domaine de la Romanée-Conti', 'Vega Sicilia'];
-  
+
   return (
-    <div>
+    <div className="explore-container">
       <h4>Explore Wines</h4>
       <p>Discover wines from around the world by region, varietal, or producer.</p>
-      
+
       <ul className="nav nav-tabs mb-4">
         <li className="nav-item">
           <button 
@@ -38,10 +39,10 @@ const Explore: React.FC = () => {
           </button>
         </li>
       </ul>
-      
-      <div className="row">
+
+      <div className="row card-container">
         {activeTab === 'regions' && regions.map((region, index) => (
-          <div key={index} className="col-md-4 mb-4">
+          <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{region}</h5>
@@ -53,9 +54,9 @@ const Explore: React.FC = () => {
             </div>
           </div>
         ))}
-        
+
         {activeTab === 'varietals' && varietals.map((varietal, index) => (
-          <div key={index} className="col-md-4 mb-4">
+          <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{varietal}</h5>
@@ -67,9 +68,9 @@ const Explore: React.FC = () => {
             </div>
           </div>
         ))}
-        
+
         {activeTab === 'producers' && producers.map((producer, index) => (
-          <div key={index} className="col-md-4 mb-4">
+          <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
             <div className="card h-100">
               <div className="card-body">
                 <h5 className="card-title">{producer}</h5>

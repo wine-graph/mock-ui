@@ -1,0 +1,42 @@
+.explore-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 -10px; /* Negative margin to offset card padding */
+}
+
+.card {
+  margin: 0 10px;
+  transition: transform 0.2s;
+  width: 100%;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .explore-container {
+    padding: 0 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .explore-container {
+    padding: 0 5px;
+  }
+}

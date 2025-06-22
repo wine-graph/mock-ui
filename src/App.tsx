@@ -13,29 +13,43 @@ import Cellar from './components/pages/Cellar';
 import Marketplace from './components/pages/Marketplace';
 import Profile from './components/pages/Profile';
 
+// User type enum
+export enum UserType {
+  Unauthenticated = 'Unauthenticated',
+  Enthusiast = 'Enthusiast',
+  Producer = 'Producer',
+  Retailer = 'Retailer'
+}
+
 function App() {
   const [activeView, setActiveView] = useState('home');
+  const [userType, setUserType] = useState<UserType>(UserType.Unauthenticated);
 
   // Render the active view based on the selected navigation item
   const renderActiveView = () => {
     switch (activeView) {
       case 'home':
-        return <Home />;
+        return <Home userType={userType} />;
       case 'explore':
-        return <Explore />;
+        return <Explore userType={userType} />;
       case 'cellar':
-        return <Cellar />;
+        return <Cellar userType={userType} />;
       case 'marketplace':
-        return <Marketplace />;
+        return <Marketplace userType={userType} />;
       case 'profile':
-        return <Profile />;
+        return <Profile userType={userType} />;
       default:
-        return <Home />;
+        return <Home userType={userType} />;
     }
   };
 
   return (
-    <Layout activeView={activeView} setActiveView={setActiveView}>
+    <Layout 
+      activeView={activeView} 
+      setActiveView={setActiveView}
+      userType={userType}
+      setUserType={setUserType}
+    >
       {renderActiveView()}
     </Layout>
   );

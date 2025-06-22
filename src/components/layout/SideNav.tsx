@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import './SideNav.css';
 
 interface SideNavProps {
   activeView: string;
@@ -16,7 +17,10 @@ const SideNav: React.FC<SideNavProps> = ({ activeView, setActiveView }) => {
   ];
 
   return (
-    <div className="col-md-2 p-0" id="left-nav">
+    <div 
+      className="sidenav-container collapsed" 
+      id="left-nav"
+    >
       <div className="nav flex-column p-3">
         {navItems.map(item => (
           <div 
@@ -26,7 +30,8 @@ const SideNav: React.FC<SideNavProps> = ({ activeView, setActiveView }) => {
             onClick={() => setActiveView(item.id)}
             style={{ cursor: 'pointer' }}
           >
-            <i className={`bi ${item.icon}`}></i> {item.label}
+            <i className={`bi ${item.icon}`}></i> 
+            <span className="nav-label">{item.label}</span>
           </div>
         ))}
       </div>
