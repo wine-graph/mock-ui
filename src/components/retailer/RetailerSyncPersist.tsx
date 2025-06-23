@@ -1,5 +1,5 @@
 import React from 'react';
-import type { WineCoreImpl } from '../../data/models';
+import { WineCoreImpl } from '../../data/models';
 
 interface RetailerSyncPersistProps {
   wines: WineCoreImpl[];

@@ -1,29 +1,24 @@
 import React, { useState } from 'react';
+import { UserType } from '../../App';
+import { getAvailableWinesForMarketplace } from '../../data/MockWine';
+import { getProducerOfferingsForMarketplace } from '../../data/MockProducer';
 
-const Marketplace: React.FC = () => {
+interface MarketplaceProps {
+  userType: UserType;
+}
+
+const Marketplace: React.FC<MarketplaceProps> = ({ userType }) => {
   const [activeTab, setActiveTab] = useState<string>('buy');
-  
-  // Mock data for wines available for purchase
-  const availableWines = [
-    { id: 201, name: '2019 Cabernet Sauvignon', producer: 'Silver Oak', region: 'Alexander Valley', price: 89.99, seller: 'Wine Merchant A' },
-    { id: 202, name: '2018 Pinot Noir', producer: 'Williams Selyem', region: 'Russian River Valley', price: 120.00, seller: 'Wine Merchant B' },
-    { id: 203, name: '2020 Sauvignon Blanc', producer: 'Cloudy Bay', region: 'Marlborough', price: 34.99, seller: 'Wine Merchant C' },
-    { id: 204, name: '2017 Brunello di Montalcino', producer: 'Altesino', region: 'Tuscany', price: 65.00, seller: 'Wine Merchant A' },
-    { id: 205, name: 'NV Champagne Brut', producer: 'Veuve Clicquot', region: 'Champagne', price: 59.99, seller: 'Wine Merchant D' },
-  ];
-  
-  // Mock data for producer offerings
-  const producerOfferings = [
-    { id: 301, name: 'Vineyard XYZ', region: 'Sonoma', description: 'Family-owned winery specializing in Pinot Noir and Chardonnay', featured: '2019 Reserve Pinot Noir' },
-    { id: 302, name: 'Château ABC', region: 'Bordeaux', description: 'Historic estate producing classic Bordeaux blends', featured: '2018 Grand Vin' },
-    { id: 303, name: 'Bodega 123', region: 'Rioja', description: 'Modern winery with traditional Spanish roots', featured: '2017 Gran Reserva' },
-  ];
-  
+
+  // Get data from centralized mock files
+  const availableWines = getAvailableWinesForMarketplace();
+  const producerOfferings = getProducerOfferingsForMarketplace();
+
   return (
     <div>
       <h4>Wine Marketplace</h4>
       <p>Buy wines from retailers or directly from producers.</p>
-      
+
       <ul className="nav nav-tabs mb-4">
         <li className="nav-item">
           <button 
@@ -50,7 +45,7 @@ const Marketplace: React.FC = () => {
           </button>
         </li>
       </ul>
-      
+
       {activeTab === 'buy' && (
         <>
           <div className="row mb-4">
@@ -127,7 +122,7 @@ const Marketplace: React.FC = () => {
           </div>
         </>
       )}
-      
+
       {activeTab === 'producers' && (
         <div className="row">
           {producerOfferings.map(producer => (
@@ -147,7 +142,7 @@ const Marketplace: React.FC = () => {
           ))}
         </div>
       )}
-      
+
       {activeTab === 'sell' && (
         <div className="card">
           <div className="card-body">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { mockSquareWines, type SquareWine } from '../../data/mockSquareWines';
-import type {WineCoreImpl} from "../../data/models";
+import { WineCoreImpl } from "../../data/models";
 
 interface RetailerSyncQueryProps {
   onSaveToPlatform: (wines: WineCoreImpl[]) => void;

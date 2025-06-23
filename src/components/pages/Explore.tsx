@@ -1,12 +1,20 @@
 import React, { useState } from 'react';
+import { UserType } from '../../App';
+import { getRegionsFromWines, getVarietalsFromWines } from '../../data/MockWine';
+import { getProducerNamesForExplore } from '../../data/MockProducer';
 import './Explore.css';
 
-const Explore: React.FC = () => {
+interface ExploreProps {
+  userType: UserType;
+}
+
+const Explore: React.FC<ExploreProps> = ({ userType }) => {
   const [activeTab, setActiveTab] = useState<string>('regions');
 
-  const regions = ['Napa Valley', 'Bordeaux', 'Tuscany', 'Rioja', 'Barossa Valley', 'Willamette Valley'];
-  const varietals = ['Cabernet Sauvignon', 'Merlot', 'Pinot Noir', 'Chardonnay', 'Sauvignon Blanc', 'Syrah'];
-  const producers = ['Château Margaux', 'Opus One', 'Antinori', 'Penfolds', 'Domaine de la Romanée-Conti', 'Vega Sicilia'];
+  // Get data from centralized mock files
+  const regions = getRegionsFromWines();
+  const varietals = getVarietalsFromWines();
+  const producers = getProducerNamesForExplore();
 
   return (
     <div className="explore-container">

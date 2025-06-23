@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { UserType } from '../../App';
+import { getUserProfileByType } from '../../data/mockUserProfiles';
+import { getOrderHistoryData } from '../../data/MockWine';
 
 interface ProfileProps {
   userType: UserType;
@@ -8,71 +10,11 @@ interface ProfileProps {
 const Profile: React.FC<ProfileProps> = ({ userType }) => {
   const [activeTab, setActiveTab] = useState<string>('profile');
 
-  // Mock user data based on user type
-  const getUserData = () => {
-    switch (userType) {
-      case UserType.Enthusiast:
-        return {
-          name: 'Jane Smith',
-          email: 'jane.smith@example.com',
-          memberSince: 'January 2023',
-          preferences: {
-            favoriteVarietals: ['Cabernet Sauvignon', 'Pinot Noir', 'Chardonnay'],
-            favoriteRegions: ['Napa Valley', 'Burgundy', 'Tuscany'],
-            tasteProfile: ['Full-bodied', 'Fruity', 'Oak']
-          },
-          collection: [
-            { name: '2019 Cabernet Sauvignon', producer: 'Napa Winery', rating: 4.5, notes: 'Bold with dark fruit notes' },
-            { name: '2020 Chardonnay', producer: 'Sonoma Vineyards', rating: 4.0, notes: 'Crisp with apple and pear' },
-            { name: '2018 Pinot Noir', producer: 'Oregon Cellars', rating: 4.8, notes: 'Elegant with cherry and spice' }
-          ]
-        };
-      case UserType.Producer:
-        return {
-          name: 'Vineyard Estate Winery',
-          email: 'contact@vineyardestate.com',
-          memberSince: 'March 2022',
-          shopifyStore: 'vineyardestate.myshopify.com',
-          inventory: [
-            { name: '2020 Estate Cabernet', stock: 245, price: 45.99, lastSync: '2023-06-10' },
-            { name: '2021 Reserve Chardonnay', stock: 180, price: 38.99, lastSync: '2023-06-10' },
-            { name: '2019 Limited Pinot Noir', stock: 56, price: 65.99, lastSync: '2023-06-10' }
-          ]
-        };
-      case UserType.Retailer:
-        return {
-          name: 'Downtown Wine Shop',
-          email: 'info@downtownwine.com',
-          memberSince: 'November 2022',
-          squareAccount: 'downtown-wine-shop',
-          inventory: [
-            { name: '2019 Napa Cabernet', producer: 'Vineyard Estate', stock: 24, price: 52.99, lastSync: '2023-06-12' },
-            { name: '2020 Sonoma Chardonnay', producer: 'Coastal Vineyards', stock: 18, price: 42.99, lastSync: '2023-06-12' },
-            { name: '2018 Willamette Pinot Noir', producer: 'Oregon Cellars', stock: 12, price: 48.99, lastSync: '2023-06-12' }
-          ]
-        };
-      default:
-        return {
-          name: 'Guest User',
-          email: 'Please sign in to view your profile',
-          memberSince: '',
-          preferences: {
-            favoriteVarietals: [],
-            favoriteRegions: [],
-            tasteProfile: []
-          }
-        };
-    }
-  };
+  // Get user data from centralized mock data
+  const user = getUserProfileByType(userType);
 
-  const user = getUserData();
-
-  // Mock order history (only for Enthusiast)
-  const orders = userType === UserType.Enthusiast ? [
-    { id: 401, date: '2023-05-15', items: ['2019 Cabernet Sauvignon (2)', '2020 Chardonnay (1)'], total: 219.97, status: 'Delivered' },
-    { id: 402, date: '2023-03-22', items: ['2018 Pinot Noir (1)', '2021 Sauvignon Blanc (2)'], total: 154.97, status: 'Delivered' },
-    { id: 403, date: '2023-01-10', items: ['NV Champagne Brut (1)'], total: 59.99, status: 'Delivered' },
-  ] : [];
+  // Get order history from centralized mock data (only for Enthusiast)
+  const orders = userType === UserType.Enthusiast ? getOrderHistoryData() : [];
 
   // Get profile description based on user type
   const getProfileDescription = () => {

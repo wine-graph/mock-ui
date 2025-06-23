@@ -9,7 +9,11 @@ import Layout from './components/layout/Layout';
 // Page components
 import Home from './components/pages/Home';
 import Explore from './components/pages/Explore';
-import Cellar from './components/pages/Cellar';
+import RetailerCellar from './components/retailer/RetailerCellar';
+import RetailerMarketplace from './components/retailer/RetailerMarketplace';
+import ProducerCellar from './components/producer/ProducerCellar';
+import ProducerMarketplace from './components/producer/ProducerMarketplace';
+import EnthusiastMarketplace from './components/enthusiast/EnthusiastMarketplace';
 import Marketplace from './components/pages/Marketplace';
 import Profile from './components/pages/Profile';
 
@@ -33,9 +37,24 @@ function App() {
       case 'explore':
         return <Explore userType={userType} />;
       case 'cellar':
-        return <Cellar userType={userType} />;
+        if (userType === UserType.Retailer) {
+          return <RetailerCellar />;
+        } else if (userType === UserType.Producer) {
+          return <ProducerCellar />;
+        } else {
+          // For Unauthenticated and Enthusiast users, redirect to home
+          return <Home userType={userType} />;
+        }
       case 'marketplace':
-        return <Marketplace userType={userType} />;
+        if (userType === UserType.Retailer) {
+          return <RetailerMarketplace />;
+        } else if (userType === UserType.Producer) {
+          return <ProducerMarketplace />;
+        } else if (userType === UserType.Enthusiast) {
+          return <EnthusiastMarketplace />;
+        } else {
+          return <Marketplace userType={userType} />;
+        }
       case 'profile':
         return <Profile userType={userType} />;
       default:
