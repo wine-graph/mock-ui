@@ -51,7 +51,7 @@ This application demonstrates a multi-role wine platform with distinct user expe
 ```
 src/components/
 ├── layout/           # Layout components (TopNav, SideNav, Layout)
-├── pages/           # Shared pages (Home, Explore, Marketplace, Profile)
+├── pages/           # Shared pages (VisitorHome, VisitorExplore, Marketplace, VisitorProfile)
 ├── retailer/        # Retailer-specific components
 ├── producer/        # Producer-specific components
 ├── enthusiast/      # Enthusiast-specific components

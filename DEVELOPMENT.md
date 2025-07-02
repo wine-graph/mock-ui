@@ -28,17 +28,17 @@ Create a comprehensive, responsive React-based UI prototype demonstrating a mult
 - [x] **Responsive Design**: 3/2/1 card layout for desktop/tablet/mobile
 
 ### Shared Pages
-- [x] **Home Page**: Platform introduction with role-specific content
-- [x] **Explore Page**: Wine discovery with region/varietal/producer filtering
+- [x] **VisitorHome Page**: Platform introduction with role-specific content
+- [x] **VisitorExplore Page**: Wine discovery with region/varietal/producer filtering
 - [x] **Base Marketplace**: Foundation marketplace for unauthenticated users
-- [x] **Profile Page**: User management with role-specific features
+- [x] **VisitorProfile Page**: User management with role-specific features
 
 ### Retailer Implementation (Complete)
 - [x] **RetailerCellar**: Inventory management dashboard
 - [x] **RetailerMarketplace**: B2B/B2C sales interface with advanced filtering
 - [x] **RetailerSync**: Square POS integration workflow
 - [x] **RetailerSyncQuery**: Fetch and edit Square inventory data
-- [x] **RetailerSyncPersist**: Display saved WineCore records
+- [x] **RetailerSyncPreview**: Display saved WineCore records
 - [x] **Mock Data**: Comprehensive retailer marketplace data
 
 ### Producer Implementation (Complete)
@@ -48,7 +48,7 @@ Create a comprehensive, responsive React-based UI prototype demonstrating a mult
 - [x] **Mock Data**: Producer marketplace and inventory data
 
 ### Enthusiast Implementation (Complete)
-- [x] **EnthusiastMarketplace**: Consumer marketplace with advanced features
+- [x] **VisitorMarketplace**: Consumer marketplace with advanced features
   - Wine discovery and exploration
   - Multi-source purchasing (producers and retailers)
   - Advanced filtering and search

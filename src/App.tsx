@@ -3,74 +3,108 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './App.css';
 
-// Layout components
-import Layout from './components/layout/Layout';
+// Layout
+import Layout from './nav/Layout';
 
-// Page components
-import Home from './components/pages/Home';
-import Explore from './components/pages/Explore';
-import RetailerCellar from './components/retailer/RetailerCellar';
-import RetailerMarketplace from './components/retailer/RetailerMarketplace';
-import ProducerCellar from './components/producer/ProducerCellar';
-import ProducerMarketplace from './components/producer/ProducerMarketplace';
-import EnthusiastMarketplace from './components/enthusiast/EnthusiastMarketplace';
-import Marketplace from './components/pages/Marketplace';
-import Profile from './components/pages/Profile';
+// Visitor pages
+import VisitorHome from './users/visitor/VisitorHome';
+import VisitorExplore from './users/visitor/VisitorExplore';
+import VisitorMarketplace from './users/visitor/VisitorMarketplace';
+import VisitorProfile from './users/visitor/VisitorProfile';
 
-// User type enum
+// Retailer pages
+import RetailerCellar from './users/retailer/RetailerCellar';
+import RetailerMarketplace from './users/retailer/RetailerMarketplace';
+import RetailerProfile from './users/retailer/RetailerProfile';
+import RetailerHome from './users/retailer/RetailerHome';
+
+// Producer pages
+import ProducerCellar from './users/producer/ProducerCellar';
+import ProducerMarketplace from './users/producer/ProducerMarketplace';
+import ProducerProfile from './users/producer/ProducerProfile';
+import ProducerHome from './users/producer/ProducerHome';
+
+// Enthusiast pages
+import EnthusiastCellar from './users/enthusiast/EnthusiastCellar';
+import EnthusiastMarketplace from './users/enthusiast/EnthusiastMarketplace';
+import EnthusiastProfile from './users/enthusiast/EnthusiastProfile';
+import EnthusiastHome from './users/enthusiast/EnthusiastHome';
+
+// User type
+// @ts-ignore
 export enum UserType {
-  Unauthenticated = 'Unauthenticated',
+  Visitor = 'Visitor',
   Enthusiast = 'Enthusiast',
   Producer = 'Producer',
-  Retailer = 'Retailer'
+  Retailer = 'Retailer',
 }
 
 function App() {
   const [activeView, setActiveView] = useState('home');
-  const [userType, setUserType] = useState<UserType>(UserType.Unauthenticated);
+  const [userType, setUserType] = useState<UserType>(UserType.Visitor);
 
-  // Render the active view based on the selected navigation item
   const renderActiveView = () => {
     switch (activeView) {
       case 'home':
-        return <Home userType={userType} />;
+        switch (userType) {
+          case UserType.Producer:
+            return <ProducerHome />;
+          case UserType.Retailer:
+            return <RetailerHome />;
+          case UserType.Enthusiast:
+            return <EnthusiastHome />;
+          default:
+            return <VisitorHome userType={userType} />;
+        }
       case 'explore':
-        return <Explore userType={userType} />;
+        return <VisitorExplore userType={userType} />;
       case 'cellar':
-        if (userType === UserType.Retailer) {
-          return <RetailerCellar />;
-        } else if (userType === UserType.Producer) {
-          return <ProducerCellar />;
-        } else {
-          // For Unauthenticated and Enthusiast users, redirect to home
-          return <Home userType={userType} />;
+        switch (userType) {
+          case UserType.Producer:
+            return <ProducerCellar />;
+          case UserType.Retailer:
+            return <RetailerCellar />;
+          case UserType.Enthusiast:
+            return <EnthusiastCellar />;
+          default:
+            return <VisitorHome userType={userType} />;
         }
       case 'marketplace':
-        if (userType === UserType.Retailer) {
-          return <RetailerMarketplace />;
-        } else if (userType === UserType.Producer) {
-          return <ProducerMarketplace />;
-        } else if (userType === UserType.Enthusiast) {
-          return <EnthusiastMarketplace />;
-        } else {
-          return <Marketplace userType={userType} />;
+        switch (userType) {
+          case UserType.Producer:
+            return <ProducerMarketplace />;
+          case UserType.Retailer:
+            return <RetailerMarketplace />;
+          case UserType.Enthusiast:
+            return <EnthusiastMarketplace />;
+          default:
+            return <VisitorMarketplace />;
         }
       case 'profile':
-        return <Profile userType={userType} />;
+        switch (userType) {
+          case UserType.Producer:
+            return <ProducerProfile />;
+          case UserType.Retailer:
+            return <RetailerProfile />;
+          case UserType.Enthusiast:
+            return <EnthusiastProfile />;
+          default:
+            return <VisitorProfile userType={userType} />;
+        }
       default:
-        return <Home userType={userType} />;
+        return <VisitorHome userType={userType} />;
     }
   };
 
   return (
-    <Layout 
-      activeView={activeView} 
-      setActiveView={setActiveView}
-      userType={userType}
-      setUserType={setUserType}
-    >
-      {renderActiveView()}
-    </Layout>
+      <Layout
+          activeView={activeView}
+          setActiveView={setActiveView}
+          userType={userType}
+          setUserType={setUserType}
+      >
+        {renderActiveView()}
+      </Layout>
   );
 }
 
