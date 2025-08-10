@@ -1,0 +1,95 @@
+/* Wine Platform Global Styles */
+
+:root {
+  --wine-primary: #722F37;
+  --wine-secondary: #A4343A;
+  --wine-light: #F9F7F7;
+  --wine-dark: #2B0A0E;
+  --wine-accent: #D4B483;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #fff;
+  color: #212529;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom link styling that works with Bootstrap */
+a {
+  color: var(--wine-primary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--wine-secondary);
+  text-decoration: underline;
+}
+
+/* Custom button styling for wine-themed buttons */
+.btn-wine {
+  background-color: var(--wine-primary);
+  border-color: var(--wine-primary);
+  color: white;
+}
+
+.btn-wine:hover {
+  background-color: var(--wine-secondary);
+  border-color: var(--wine-secondary);
+  color: white;
+}
+
+.btn-outline-wine {
+  background-color: transparent;
+  border-color: var(--wine-primary);
+  color: var(--wine-primary);
+}
+
+.btn-outline-wine:hover {
+  background-color: var(--wine-primary);
+  color: white;
+}
+
+/* Wine-themed text colors */
+.text-wine {
+  color: var(--wine-primary) !important;
+}
+
+.bg-wine {
+  background-color: var(--wine-primary) !important;
+  color: white;
+}
+
+/* Override Bootstrap's default focus styling */
+:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.25rem rgba(114, 47, 55, 0.25);
+}
+
+/* Card Styling */
+.card {
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}

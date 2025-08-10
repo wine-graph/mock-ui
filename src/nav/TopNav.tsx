@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { UserType } from '../../App';
+import { UserType } from '../App.tsx';
 
 interface TopNavProps {
   userType: UserType;
@@ -35,7 +35,7 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
   const getUserIcon = () => {
     switch (userType) {
       case UserType.Enthusiast:
-        return { icon: 'bi-person-fill', color: '#28a745' }; // Green for enthusiast
+        return { icon: 'bi-person-fill', color: '#28a745' }; // Green for visitor
       case UserType.Producer:
         return { icon: 'bi-building', color: '#007bff' }; // Blue for producer
       case UserType.Retailer:
@@ -49,7 +49,7 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
 
   return (
     <nav className="navbar navbar-light bg-light px-3">
-      <span className="navbar-brand mb-0 h1">🍇 Wine Platform 🍇</span>
+      <span className="navbar-brand mb-0 h1">🍇 Wine Graph 🍇</span>
       <input 
         className="form-control me-2 w-25" 
         type="search" 
@@ -72,8 +72,8 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
         <div className={`dropdown-menu dropdown-menu-end ${dropdownOpen ? 'show' : ''}`} style={{ right: 0, left: 'auto' }}>
           <h6 className="dropdown-header">Switch User Type</h6>
           <button 
-            className={`dropdown-item ${userType === UserType.Unauthenticated ? 'active' : ''}`} 
-            onClick={() => handleUserTypeChange(UserType.Unauthenticated)}
+            className={`dropdown-item ${userType === UserType.Visitor ? 'active' : ''}`}
+            onClick={() => handleUserTypeChange(UserType.Visitor)}
           >
             <i className="bi bi-person me-2"></i>
             Unauthenticated

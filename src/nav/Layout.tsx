@@ -1,9 +1,9 @@
 import React, {type ReactNode } from 'react';
-import TopNav from './TopNav';
-import SideNav from './SideNav';
+import TopNav from './TopNav.tsx';
+import SideNav from './SideNav.tsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Layout.css';
-import { UserType } from '../../App';
+import { UserType } from '../App.tsx';
 
 interface LayoutProps {
   children: ReactNode;
@@ -28,6 +28,7 @@ const Layout: React.FC<LayoutProps> = ({
           <SideNav 
             activeView={activeView} 
             setActiveView={setActiveView}
+            userType={userType}
           />
           <div className="content-area p-4" id="content">
             <div className="container">
