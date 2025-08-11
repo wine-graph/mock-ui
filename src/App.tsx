@@ -57,7 +57,7 @@ function App() {
             return <VisitorHome userType={userType} />;
         }
       case 'explore':
-        return <VisitorExplore userType={userType} />;
+        return <VisitorExplore />;
       case 'cellar':
         switch (userType) {
           case UserType.Producer:
@@ -89,7 +89,7 @@ function App() {
           case UserType.Enthusiast:
             return <EnthusiastProfile />;
           default:
-            return <VisitorProfile userType={userType} />;
+            return <VisitorProfile />;
         }
       default:
         return <VisitorHome userType={userType} />;

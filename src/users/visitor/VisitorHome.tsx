@@ -2,6 +2,7 @@ import React from 'react';
 import {UserType} from '../../App.tsx';
 import {mockWines} from '../../types/Wine.ts';
 import {mockProducers} from '../../types/Producer.ts';
+import WineGraph from '../../components/WineGraph';
 
 interface HomeProps {
     userType: UserType;
@@ -117,6 +118,13 @@ const VisitorHome: React.FC<HomeProps> = ({userType}) => {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                    </div>
+
+                    <div className="card mb-4">
+                        <div className="card-header"><h5>The Wine Graph</h5></div>
+                        <div className="card-body">
+                            <WineGraph />
                         </div>
                     </div>
 
