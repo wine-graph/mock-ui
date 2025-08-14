@@ -18,6 +18,7 @@ export interface Wine {
     id: string;
     name: string;
     vintage: number;
+    varietal: string;
     size: number;
     producer: string;
     color: "RED" | "WHITE" | "ROSE" | "ORANGE";
@@ -40,6 +41,7 @@ export const mockWines: Wine[] = [
         id: "w1",
         name: "Young Family Pinot Noir",
         vintage: 2020,
+        varietal: "Pinot Noir",
         size: 750,
         producer: "The Clam Farm",
         color: "RED",
@@ -66,6 +68,7 @@ export const mockWines: Wine[] = [
         name: "Austin Hope Cabernet Sauvignon",
         vintage: 2018,
         size: 750,
+        varietal: "Cabernet Sauvignon",
         producer: "Hope Family Wines",
         color: "RED",
         closure: "NATURAL_CORK",
@@ -90,6 +93,7 @@ export const mockWines: Wine[] = [
         id: "w3",
         name: "Austin Hope Chardonnay",
         vintage: 2021,
+        varietal: "Chardonnay",
         size: 750,
         producer: "Hope Family Wines",
         color: "WHITE",
@@ -116,6 +120,7 @@ export const mockWines: Wine[] = [
         name: "Austin Hope Reserve Blend",
         vintage: 2021,
         size: 750,
+        varietal: "Blend",
         producer: "Hope Family Wines",
         color: "RED",
         closure: "VALVE",
@@ -150,6 +155,7 @@ export const mockWines: Wine[] = [
         id: "w5",
         name: "Auctioneer Cabernet Sauvignon",
         vintage: 2021,
+        varietal: "Cabernet Sauvignon",
         size: 750,
         producer: "Auctioneer",
         color: "RED",
@@ -177,6 +183,7 @@ export const mockWines: Wine[] = [
         id: "w6",
         name: "Luli Chardonnay",
         vintage: 2023,
+        varietal: "Chardonnay",
         size: 750,
         producer: "Luli Wines",
         color: "WHITE",
@@ -202,6 +209,7 @@ export const mockWines: Wine[] = [
         id: "w7",
         name: "Luli Monte Linda Pinot Noir",
         vintage: 2022,
+        varietal: "Pinot Noir",
         size: 750,
         producer: "Luli Wines",
         color: "RED",
@@ -227,6 +235,7 @@ export const mockWines: Wine[] = [
         id: "w8",
         name: "Luli Sauvignon Blanc",
         vintage: 2023,
+        varietal: "Sauvignon Blanc",
         size: 750,
         producer: "Luli Wines",
         color: "WHITE",
@@ -252,8 +261,9 @@ export const mockWines: Wine[] = [
         id: "w9",
         name: "Just a Wine Chardonnay",
         vintage: 2023,
+        varietal: "Chardonnay",
         size: 750,
-        producer: "Producer",
+        producer: "Just a Producer",
         color: "WHITE",
         closure: "SCREW_CAP",
         shape: "BURGUNDY",
@@ -277,8 +287,9 @@ export const mockWines: Wine[] = [
         id: "w10",
         name: "Just Another Wine Pinot Noir",
         vintage: 2022,
+        varietal: "Pinot Noir",
         size: 750,
-        producer: "Producer",
+        producer: "Just a Producer",
         color: "RED",
         closure: "SYNTHETIC_CORK",
         shape: "BURGUNDY",

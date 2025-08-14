@@ -7,28 +7,27 @@ import './App.css';
 import Layout from './nav/Layout';
 
 // Visitor pages
-import VisitorHome from './users/visitor/VisitorHome';
 import VisitorExplore from './users/visitor/VisitorExplore';
 import VisitorMarketplace from './users/visitor/VisitorMarketplace';
 import VisitorProfile from './users/visitor/VisitorProfile';
+
+// Common Home page (shared across all roles)
+import CommonHome from './users/common/CommonHome';
 
 // Retailer pages
 import RetailerCellar from './users/retailer/RetailerCellar';
 import RetailerMarketplace from './users/retailer/RetailerMarketplace';
 import RetailerProfile from './users/retailer/RetailerProfile';
-import RetailerHome from './users/retailer/RetailerHome';
 
 // Producer pages
 import ProducerCellar from './users/producer/ProducerCellar';
 import ProducerMarketplace from './users/producer/ProducerMarketplace';
 import ProducerProfile from './users/producer/ProducerProfile';
-import ProducerHome from './users/producer/ProducerHome';
 
 // Enthusiast pages
 import EnthusiastCellar from './users/enthusiast/EnthusiastCellar';
 import EnthusiastMarketplace from './users/enthusiast/EnthusiastMarketplace';
 import EnthusiastProfile from './users/enthusiast/EnthusiastProfile';
-import EnthusiastHome from './users/enthusiast/EnthusiastHome';
 
 // User type
 // @ts-ignore
@@ -46,18 +45,9 @@ function App() {
   const renderActiveView = () => {
     switch (activeView) {
       case 'home':
-        switch (userType) {
-          case UserType.Producer:
-            return <ProducerHome />;
-          case UserType.Retailer:
-            return <RetailerHome />;
-          case UserType.Enthusiast:
-            return <EnthusiastHome />;
-          default:
-            return <VisitorHome userType={userType} />;
-        }
+        return <CommonHome userType={userType as any} />;
       case 'explore':
-        return <VisitorExplore userType={userType} />;
+        return <VisitorExplore />;
       case 'cellar':
         switch (userType) {
           case UserType.Producer:
@@ -67,7 +57,7 @@ function App() {
           case UserType.Enthusiast:
             return <EnthusiastCellar />;
           default:
-            return <VisitorHome userType={userType} />;
+            return <CommonHome userType={userType as any} />;
         }
       case 'marketplace':
         switch (userType) {
@@ -89,10 +79,10 @@ function App() {
           case UserType.Enthusiast:
             return <EnthusiastProfile />;
           default:
-            return <VisitorProfile userType={userType} />;
+            return <VisitorProfile />;
         }
       default:
-        return <VisitorHome userType={userType} />;
+        return <CommonHome userType={userType as any} />;
     }
   };
 

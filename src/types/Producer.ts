@@ -12,7 +12,7 @@ export interface Producer {
 export const mockProducers: Producer[] = [
     {
         id: "p1",
-        name: "Producer",
+        name: "Just a Producer",
         email: "info@producer.com",
         phone: "+1-707-555-0000",
         website: "https://producer.com",
