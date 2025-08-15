@@ -13,7 +13,7 @@ const ProducerCellar: React.FC = () => {
       <div className="d-flex justify-content-between align-items-center mb-4">
         <div>
           <h4>Luli Wines Cellar</h4>
-          <p>Manage your wine inventory, upcoming releases, and sync with Shopify.</p>
+          <p>Manage inventory, upload wine data from CSV, or sync with Shopify.</p>
         </div>
         <button className="btn btn-primary">Add Wine</button>
       </div>
@@ -29,18 +29,18 @@ const ProducerCellar: React.FC = () => {
         </li>
         <li className="nav-item">
           <button 
-            className={`nav-link ${view === 'upcoming' ? 'active' : ''}`}
-            onClick={() => setView('upcoming')}
-          >
-            Upcoming Releases
-          </button>
-        </li>
-        <li className="nav-item">
-          <button 
             className={`nav-link ${view === 'producersync' ? 'active' : ''}`}
             onClick={() => setView('producersync')}
           >
             Shopify Sync
+          </button>
+        </li>
+        <li className="nav-item">
+          <button 
+            className={`nav-link ${view === 'csvsync' ? 'active' : ''}`}
+            onClick={() => setView('csvsync')}
+          >
+            CSV Import
           </button>
         </li>
       </ul>
@@ -75,38 +75,13 @@ const ProducerCellar: React.FC = () => {
         </div>
       )}
 
-      {view === 'upcoming' && (
-        <div className="table-responsive">
-          <table className="table table-hover">
-            <thead>
-              <tr>
-                <th>Wine</th>
-                <th>Region</th>
-                <th>Release Date</th>
-                <th>Notes</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {luliWines.map(wine => (
-                <tr key={wine.id}>
-                  <td>{wine.name}</td>
-                  <td>{wine.subarea || "Napa Valley AVA"}</td>
-                  <td>07.14.2025</td>
-                  <td>{wine.description}</td>
-                  <td>
-                    <button className="btn btn-sm btn-outline-success me-2">Edit</button>
-                    <button className="btn btn-sm btn-outline-danger">Remove</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
 
       {view === 'producersync' && (
-        <ProducerSync />
+        <ProducerSync mode="shopify" />
+      )}
+
+      {view === 'csvsync' && (
+        <ProducerSync mode="csv" />
       )}
     </div>
   );
