@@ -1,54 +1,60 @@
-import { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap-icons/font/bootstrap-icons.css';
-import './App.css';
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "./App.css";
 
 // Layout
-import Layout from './nav/Layout';
+import Layout from "./nav/Layout";
 
 // Visitor pages
-import VisitorExplore from './users/visitor/VisitorExplore';
-import VisitorMarketplace from './users/visitor/VisitorMarketplace';
-import VisitorProfile from './users/visitor/VisitorProfile';
+import VisitorExplore from "./users/visitor/VisitorExplore";
+import VisitorMarketplace from "./users/visitor/VisitorMarketplace";
+import VisitorProfile from "./users/visitor/VisitorProfile";
 
 // Common Home page (shared across all roles)
-import CommonHome from './users/common/CommonHome';
+import CommonHome from "./users/common/CommonHome";
 
 // Retailer pages
-import RetailerCellar from './users/retailer/RetailerCellar';
-import RetailerMarketplace from './users/retailer/RetailerMarketplace';
-import RetailerProfile from './users/retailer/RetailerProfile';
+import RetailerCellar from "./users/retailer/RetailerCellar";
+import RetailerMarketplace from "./users/retailer/RetailerMarketplace";
+import RetailerProfile from "./users/retailer/RetailerProfile";
 
 // Producer pages
-import ProducerCellar from './users/producer/ProducerCellar';
-import ProducerMarketplace from './users/producer/ProducerMarketplace';
-import ProducerProfile from './users/producer/ProducerProfile';
+import ProducerCellar from "./users/producer/ProducerCellar";
+import ProducerMarketplace from "./users/producer/ProducerMarketplace";
+import ProducerProfile from "./users/producer/ProducerProfile";
 
 // Enthusiast pages
-import EnthusiastCellar from './users/enthusiast/EnthusiastCellar';
-import EnthusiastMarketplace from './users/enthusiast/EnthusiastMarketplace';
-import EnthusiastProfile from './users/enthusiast/EnthusiastProfile';
+import EnthusiastCellar from "./users/enthusiast/EnthusiastCellar";
+import EnthusiastExplore from "./users/enthusiast/EnthusiastExplore";
+import EnthusiastMarketplace from "./users/enthusiast/EnthusiastMarketplace";
+import EnthusiastProfile from "./users/enthusiast/EnthusiastProfile";
 
 // User type
 // @ts-ignore
 export enum UserType {
-  Visitor = 'Visitor',
-  Enthusiast = 'Enthusiast',
-  Producer = 'Producer',
-  Retailer = 'Retailer',
+  Visitor = "Visitor",
+  Enthusiast = "Enthusiast",
+  Producer = "Producer",
+  Retailer = "Retailer",
 }
 
 function App() {
-  const [activeView, setActiveView] = useState('home');
+  const [activeView, setActiveView] = useState("home");
   const [userType, setUserType] = useState<UserType>(UserType.Visitor);
 
   const renderActiveView = () => {
     switch (activeView) {
-      case 'home':
+      case "home":
         return <CommonHome userType={userType as any} />;
-      case 'explore':
-        return <VisitorExplore />;
-      case 'cellar':
+      case "explore":
+        switch (userType) {
+          case UserType.Enthusiast:
+            return <EnthusiastExplore />;
+          default:
+            return <VisitorExplore />;
+        }
+      case "cellar":
         switch (userType) {
           case UserType.Producer:
             return <ProducerCellar />;
@@ -59,7 +65,7 @@ function App() {
           default:
             return <CommonHome userType={userType as any} />;
         }
-      case 'marketplace':
+      case "marketplace":
         switch (userType) {
           case UserType.Producer:
             return <ProducerMarketplace />;
@@ -70,7 +76,7 @@ function App() {
           default:
             return <VisitorMarketplace />;
         }
-      case 'profile':
+      case "profile":
         switch (userType) {
           case UserType.Producer:
             return <ProducerProfile />;
@@ -87,14 +93,14 @@ function App() {
   };
 
   return (
-      <Layout
-          activeView={activeView}
-          setActiveView={setActiveView}
-          userType={userType}
-          setUserType={setUserType}
-      >
-        {renderActiveView()}
-      </Layout>
+    <Layout
+      activeView={activeView}
+      setActiveView={setActiveView}
+      userType={userType}
+      setUserType={setUserType}
+    >
+      {renderActiveView()}
+    </Layout>
   );
 }
 
