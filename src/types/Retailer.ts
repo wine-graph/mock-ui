@@ -17,7 +17,7 @@ export interface RetailerInventory {
     retailerId: string;
     source: string;
     vintage: number;
-    varietal: string;
+    varietal?: string;
     wineId: string;
     matched?: boolean;
 }
