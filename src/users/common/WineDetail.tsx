@@ -77,14 +77,14 @@ export const WineDetail: React.FC<WineDetailProps> = ({ wine, onClose }) => {
                   </li>
                   <li className="list-group-item d-flex justify-content-between">
                     <span>
-                      Bottle Aging{" "}
+                      Bottle Aging
                       <span className="small fst-italic">(months)</span>
                     </span>
                     <span>{wine.bottleAging}</span>
                   </li>
                   <li className="list-group-item d-flex justify-content-between">
                     <span>
-                      Alcohol{" "}
+                      Alcohol
                       <span className="small fst-italic">(percentage)</span>
                     </span>
                     <span>{wine.alcohol}</span>
@@ -112,7 +112,7 @@ export const WineDetail: React.FC<WineDetailProps> = ({ wine, onClose }) => {
                           className="list-group-item d-flex justify-content-between"
                         >
                           <span>
-                            {c.grapeName}{" "}
+                            {c.grapeName}
                             <span className="small fst-italic">
                               (percentage)
                             </span>

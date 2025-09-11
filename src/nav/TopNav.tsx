@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { UserType } from "../App.tsx";
 import { mockWines } from "../types/Wine.ts";
+import { mockProducers } from "../types/Producer.ts";
 
 interface TopNavProps {
   userType: UserType;
@@ -9,7 +10,7 @@ interface TopNavProps {
 }
 interface Search {
   match: string;
-  field: "name" | "producer" | "region";
+  field: "wine" | "producer";
 }
 
 const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
@@ -56,7 +57,7 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
     }
   };
 
-  // search logic
+  // search filter logic
   const searchItem = () => {
     if (!searchInput.trim()) {
       return;
@@ -67,28 +68,34 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
     const results = mockWines
       .map((wine) => {
         if (wine.name.toLowerCase().includes(lower)) {
-          return { match: wine.name, field: "name" };
+          return { match: wine.name, field: "wine" };
         } else if (wine.producer.toLowerCase().includes(lower)) {
           return { match: wine.producer, field: "producer" };
-        } else if (wine.subarea?.toLowerCase().includes(lower)) {
-          return { match: wine?.subarea, field: "region" };
         }
         return null;
       })
       .filter(Boolean) as Search[];
 
-    const uniqueResults = Array.from(
-      new Map(results.map((item) => [item.match, item])).values()
-    );
-
-    setFilteredWines(uniqueResults);
+    setFilteredWines(Array.from(new Set(results)));
   };
 
-  //Search wines
   useEffect(() => {
     const result = setTimeout(searchItem, 500);
     return () => clearTimeout(result);
   }, [searchInput, mockWines]);
+
+  // Search wines or producer
+  const handleSearch = (value: Search) => {
+    let searchedItem;
+    if (value.field === "wine") {
+      searchedItem = mockWines.find((wine) => wine.name === value.match);
+    } else if (value.field === "producer") {
+      searchedItem = mockProducers.find((wine) => wine.name === value.match);
+    }
+    // TODO: Display searched content
+    console.log("Searched item", searchedItem);
+    setShowSearchBox(false);
+  };
 
   const { icon, color } = getUserIcon();
 
@@ -103,17 +110,18 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
           aria-label="Search"
           id="search-bar"
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          onFocus={() => {
-            setShowSearchBox(true);
+          onChange={(e) => {
+            const value = e.target.value;
+            setSearchInput(value);
+            setShowSearchBox(value.trim().length > 0);
           }}
-          onBlur={() => {
-            setShowSearchBox(false);
+          onFocus={() => {
+            if (searchInput.length > 0) setShowSearchBox(true);
           }}
         />
         {showSearchBox && (
           <div
-            className="serach-box position-absolute w-100 border bg-white rounded-2 p-1 d-flex flex-column"
+            className="search-box position-absolute w-100 border bg-white rounded-2 p-1 d-flex flex-column"
             style={{
               top: 42,
               maxHeight: 200,
@@ -125,7 +133,11 @@ const TopNav: React.FC<TopNavProps> = ({ userType, setUserType }) => {
               <span className="search-item small">No match found</span>
             ) : (
               filteredWines.map((item, indx) => (
-                <span key={indx} className="search-item small">
+                <span
+                  onClick={() => handleSearch(item)}
+                  key={indx}
+                  className="search-item small py-1"
+                >
                   {item.match}
                 </span>
               ))

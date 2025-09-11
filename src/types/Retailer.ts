@@ -17,6 +17,7 @@ export interface RetailerInventory {
     retailerId: string;
     source: string;
     vintage: number;
+    varietal?: string;
     wineId: string;
     matched?: boolean;
 }
@@ -111,56 +112,60 @@ export const mockInventory: RetailerInventory[] = [
     {
         wineId: "w1",
         externalItemId: "KU346EH3JSHXWFOIH2EUJW2A",
-        name: "Young Family Pinot Noir",
+        name: "Young Family",
         producer: "The Clam Farm",
         retailerId: "r1",
         vintage: 2020,
+        varietal: "Pinot Noir",
         price: "$36.90",
         source: "CANONICAL",
-        description: "Lovely beautiful wine",
-        matched: false,
+        description: "Lovely beautiful wine"
     },
     {
         wineId: "w2",
         externalItemId: "RCKQTOXZK64TRTN6RF4SR4DB-1",
-        name: "Austin Hope Cabernet Sauvignon",
+        name: "Austin Hope",
         producer: "Hope Family Wines",
         retailerId: "r1",
         vintage: 2018,
+        varietal: "Cabernet Sauvignon",
         price: "$59.99",
         source: "SQUARE",
-        description: "A bold Cabernet Sauvignon from Paso Robles."
+        description: "A bold Cabernet Sauvignon from Paso Robles.",
     },
     {
         wineId: "w3",
         externalItemId: "RCKQTOXZK64TRTN6RF4SR4DB-2",
-        name: "Austin Hope Chardonnay",
+        name: "Austin Hope",
         producer: "Hope Family Wines",
         retailerId: "r1",
         vintage: 2021,
+        varietal: "Chardonnay",
         price: "$39.99",
-        source: "SQUARE",
+        source: "CANONICAL",
         description: "Vibrant Chardonnay with notes of citrus and oak.",
-        matched: true
     },
     {
         wineId: "w4",
         externalItemId: "RCKQTOXZK64TRTN6RF4SR4DB-3",
-        name: "Austin Hope Reserve Blend",
+        name: "Austin Hope Reserve",
         producer: "Hope Family Wines",
         retailerId: "r1",
         vintage: 2021,
+        varietal: "Blend",
         price: "$79.99",
         source: "SQUARE",
-        description: "Premium blend with complex flavors and aromas."
+        description: "Premium blend with complex flavors and aromas.",
+        matched: true,
     },
     {
         wineId: "w5",
         externalItemId: "TRERADF23098432084ERE0889",
-        name: "Auctioneer Cabernet Sauvignon",
+        name: "Auctioneer",
         producer: "Auctioneer",
         retailerId: "r1",
         vintage: 2021,
+        varietal: "Cabernet Sauvignon",
         price: "$45.00",
         source: "SQUARE",
         description: "Isabelle's favorite wine"
@@ -168,43 +173,48 @@ export const mockInventory: RetailerInventory[] = [
     {
         wineId: "w6",
         externalItemId: "XCVMNCXV20384230948ZDF298-1",
-        name: "Luli Chardonnay",
+        name: "Luli",
         producer: "Luli Wines",
         retailerId: "r1",
         vintage: 2023,
+        varietal: "Chardonnay",
         price: "$39.99",
-        source: "CANONICAL",
+        source: "SQUARE",
         description: "The Luli Chardonnay was made from hand-picked fruit and whole-cluster pressed grapes."
     },
     {
         wineId: "w7",
         externalItemId: "XCVMNCXV20384230948ZDF298-2",
-        name: "Luli Monte Linda Pinot Noir",
+        name: "Luli Monte Linda",
         producer: "Luli Wines",
         retailerId: "r1",
         vintage: 2022,
+        varietal: "Pinot Noir",
         price: "$29.99",
-        source: "SQUARE",
+        source: "CANONICAL",
         description: "Luli Pinot Noir is made with classic winemaking techniques."
     },
     {
         wineId: "w9",
         externalItemId: "QERPI293784PIDF089324LJFDK",
-        name: "Just a Wine Chardonnay",
+        name: "Just a Wine",
         producer: "Producer",
         retailerId: "r1",
         vintage: 2023,
+        varietal: "Chardonnay",
         price: "$15.99",
         source: "SQUARE",
-        description: "Nothing special"
+        description: "Nothing special",
+        matched: true,
     },
     {
         wineId: "w10",
         externalItemId: "ZZC20384ENEOWR0238498023FF",
-        name: "Just Another Wine Pinot Noir",
+        name: "Just Another Wine",
         producer: "Producer",
         retailerId: "r1",
         vintage: 2022,
+        varietal: "Pinot Noir",
         price: "$17.99",
         source: "SQUARE",
         description: "Still nothing special"

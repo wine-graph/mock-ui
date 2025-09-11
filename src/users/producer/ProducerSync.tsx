@@ -20,6 +20,7 @@ const ProducerSync: React.FC = () => {
       id: product.id,
       name: product.name,
       vintage: product.vintage,
+      varietal: product.varietal,
       size: product.size ?? 750,
       producer: 'Luli Wines',
       description: product.description,
@@ -65,8 +66,8 @@ const ProducerSync: React.FC = () => {
                   <tr>
                     <th>Wine</th>
                     <th>Vintage</th>
+                    <th>Varietal</th>
                     <th>Size</th>
-                    <th>Description</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -74,8 +75,8 @@ const ProducerSync: React.FC = () => {
                       <tr key={wine.id}>
                         <td>{wine.name}</td>
                         <td>{wine.vintage}</td>
+                        <td>{wine.varietal}</td>
                         <td>{wine.size ?? 750} ml</td>
-                        <td>{wine.description}</td>
                       </tr>
                   ))}
                   </tbody>
@@ -111,9 +112,9 @@ const ProducerSync: React.FC = () => {
                   <tr>
                     <th>Name</th>
                     <th>Vintage</th>
+                    <th>Varietal</th>
                     <th>Size</th>
                     <th>Producer</th>
-                    <th>Description</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -121,9 +122,9 @@ const ProducerSync: React.FC = () => {
                       <tr key={wine.id}>
                         <td>{wine.name}</td>
                         <td>{wine.vintage}</td>
+                        <td>{wine.varietal}</td>
                         <td>{wine.size} ml</td>
                         <td>{wine.producer}</td>
-                        <td>{wine.description}</td>
                       </tr>
                   ))}
                   </tbody>
