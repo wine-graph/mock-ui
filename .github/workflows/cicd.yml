@@ -1,13 +1,11 @@
-name: Build & Deploy
+name: CICD - Build & Deploy
 
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
-  build:
+  npm-build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,8 +18,8 @@ jobs:
       - name: Run build
         run: npm run build
 
-  deploy:
-    needs: build
+  fly-deploy:
+    needs: npm-build
     runs-on: ubuntu-latest
     concurrency: deploy-group
     steps:
