@@ -1,6 +1,13 @@
 import React from 'react';
 
 const RetailerProfile: React.FC = () => {
+    const handleSquareConnect = () => {
+        // Kick off Square OAuth data-adapter will own the OAuth flow
+        // https://data-adapter.fly.dev/oauth/authorize
+        // https://localhost:8085/oauth/authorize
+        window.location.href = 'https://data-adapter.fly.dev/oauth/authorize';
+    };
+
     return (
         <div className="container py-4">
             <h4>Retailer Profile</h4>
@@ -11,14 +18,14 @@ const RetailerProfile: React.FC = () => {
                     <h6>Square Integration</h6>
                 </div>
                 <div className="card-body">
-                    <form>
-                        <div className="mb-3">
-                            <label htmlFor="squareToken" className="form-label">Square API Token</label>
-                            <input type="text" className="form-control" id="squareToken" placeholder="••••••••••" />
-                            <small className="form-text text-muted">Token is encrypted and used to sync your product catalog.</small>
-                        </div>
-                        <button className="btn btn-outline-primary">Save Integration</button>
-                    </form>
+                    <div className="mb-3">
+                        <p className="mb-2">Connect your Square account to sync inventory and sales.</p>
+                        <button type="button" className="btn btn-primary" onClick={handleSquareConnect}>
+                            <i className="bi bi-box-arrow-in-right me-2" aria-hidden="true"></i>
+                            Connect with Square
+                        </button>
+                    </div>
+                    <hr />
                 </div>
             </div>
         </div>
