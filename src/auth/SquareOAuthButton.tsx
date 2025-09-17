@@ -3,7 +3,7 @@ import { fetcher } from "../queries/squareOAuth";
 
 const SquareOAuthButton = () => {
   const { data, isValidating, isLoading } = useSWR(
-    "https://wine-retailer.fly.dev/graphql",
+    import.meta.env.VITE_WINE_RETAILER,
     fetcher
   );
 
